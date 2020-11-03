@@ -4,8 +4,9 @@ import curses
 from random import randrange, choice  # generate and place new tile
 from collections import defaultdict
 
-letter_codes = [ord(ch) for ch in 'UNEIKMuneikm']
+keys = 'uneikm'
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
+letter_codes = [ord(ch) for ch in keys + keys.upper()]
 actions_dict = dict(zip(letter_codes, actions * 2))
 
 
@@ -92,8 +93,7 @@ class GameField(object):
         return not any(self.move_is_possible(move) for move in actions)
 
     def draw(self, screen):
-        help_string1 = '(W)Up (S)Down (A)Left (D)Right'
-        help_string2 = '     (R)Restart (Q)Exit'
+        help_string = " ".join([f"({key}){action}" for key, action in zip(keys, actions)])
         gameover_string = '           GAME OVER'
         win_string = '          YOU WIN!'
 
@@ -128,8 +128,8 @@ class GameField(object):
             if self.is_gameover():
                 cast(gameover_string)
             else:
-                cast(help_string1)
-        cast(help_string2)
+                cast(help_string)
+        # cast(help_string2)
 
     def spawn(self):
         new_element = 4 if randrange(100) > 89 else 2
