@@ -10,12 +10,6 @@ letter_codes = [ord(ch) for ch in keys + keys.upper()]
 actions_dict = dict(zip(letter_codes, actions * 2))
 
 
-def get_user_action(keyboard):
-    char = "N"
-    while char not in actions_dict:
-        char = keyboard.getch()
-    return actions_dict[char]
-
 
 def transpose(field):
     return [list(row) for row in zip(*field)]
@@ -26,7 +20,8 @@ def invert(field):
 
 
 class GameField(object):
-    def __init__(self, height=4, width=4, win=2048):
+    def __init__(self, stdscr, height=4, width=4, win=2048):
+        self.stdscr = stdscr
         self.height = height
         self.width = width
         self.win_value = win
@@ -92,13 +87,13 @@ class GameField(object):
     def is_gameover(self):
         return not any(self.move_is_possible(move) for move in actions)
 
-    def draw(self, screen):
+    def draw(self):
         help_string = " ".join([f"({key}){action}" for key, action in zip(keys, actions)])
         gameover_string = '          GAME OVER'
         win_string      = '          YOU WIN!'
 
         def cast(string):
-            screen.addstr(string + '\n')
+            self.stdscr.addstr(string + '\n')
 
         def draw_hor_separator():
             top = '┌' + ('┬──────' * self.width + '┐')[1:]
@@ -114,10 +109,10 @@ class GameField(object):
         def draw_row(row):
             cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '|')
 
-        screen.clear()
+        self.stdscr.clear()
         cast('SCORE: ' + str(self.score))
         if 0 != self.high_score:
-            cast('HIGHSCORE: ' + str(self.high_score))
+            cast('HIGH SCORE: ' + str(self.high_score))
         for row in self.field:
             draw_hor_separator()
             draw_row(row)
@@ -129,7 +124,6 @@ class GameField(object):
                 cast(gameover_string)
             else:
                 cast(help_string)
-        # cast(help_string2)
 
     def spawn(self):
         new_element = 4 if randrange(100) > 89 else 2
@@ -165,10 +159,15 @@ class GameField(object):
         else:
             return False
 
+    def get_user_action(self):
+        char = "N"
+        while char not in actions_dict:
+            char = self.stdscr.getch()
+        return actions_dict[char]
 
 def main(stdscr):
     curses.use_default_colors()
-    game_field = GameField()
+    game_field = GameField(stdscr)
     state_actions = {}  # Init, Game, Win, Gameover, Exit
 
     def init():
@@ -178,8 +177,8 @@ def main(stdscr):
     state_actions['Init'] = init
 
     def not_game(state):
-        game_field.draw(stdscr)
-        action = get_user_action(stdscr)
+        game_field.draw()
+        action = game_field.get_user_action()
         responses = defaultdict(lambda: state)
         responses['Restart'], responses['Exit'] = 'Init', 'Exit'
         return responses[action]
@@ -188,8 +187,8 @@ def main(stdscr):
     state_actions['Gameover'] = lambda: not_game('Gameover')
 
     def game():
-        game_field.draw(stdscr)
-        action = get_user_action(stdscr)
+        game_field.draw()
+        action = game_field.get_user_action()
         if action == 'Restart':
             return 'Init'
         if action == 'Exit':
