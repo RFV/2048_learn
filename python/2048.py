@@ -31,12 +31,12 @@ class GameField(object):
         self.width = width
         self.win_value = win
         self.score = 0
-        self.highscore = 0
+        self.high_score = 0
         self.reset()
 
     def reset(self):
-        if self.score > self.highscore:
-            self.highscore = self.score
+        if self.score > self.high_score:
+            self.high_score = self.score
         self.score = 0
         self.field = [[0 for i in range(self.width)] for j in range(self.height)]
         self.spawn()
@@ -94,8 +94,8 @@ class GameField(object):
 
     def draw(self, screen):
         help_string = " ".join([f"({key}){action}" for key, action in zip(keys, actions)])
-        gameover_string = '           GAME OVER'
-        win_string = '          YOU WIN!'
+        gameover_string = '          GAME OVER'
+        win_string      = '          YOU WIN!'
 
         def cast(string):
             screen.addstr(string + '\n')
@@ -112,12 +112,12 @@ class GameField(object):
             draw_hor_separator.counter += 1
 
         def draw_row(row):
-            cast(''.join('│{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '│')
+            cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '|')
 
         screen.clear()
         cast('SCORE: ' + str(self.score))
-        if 0 != self.highscore:
-            cast('HIGHSCORE: ' + str(self.highscore))
+        if 0 != self.high_score:
+            cast('HIGHSCORE: ' + str(self.high_score))
         for row in self.field:
             draw_hor_separator()
             draw_row(row)
@@ -168,7 +168,7 @@ class GameField(object):
 
 def main(stdscr):
     curses.use_default_colors()
-    game_field = GameField(win=32)
+    game_field = GameField()
     state_actions = {}  # Init, Game, Win, Gameover, Exit
 
     def init():
