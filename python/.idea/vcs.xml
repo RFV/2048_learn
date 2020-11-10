@@ -2,5 +2,16 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Kraks/2048.py" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/PacosLelouch/pygame2048" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/abcfy2/python-2048" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bfontaine/term2048" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/davidsousarj/2048py" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/guolz-ml/easy_2048-in-200-lines" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/happyte/2048" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kcwu/2048-python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/summerliehu/python2048" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tibrewalpratik17/2048_" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/yangshun/2048-python" vcs="Git" />
   </component>
 </project>

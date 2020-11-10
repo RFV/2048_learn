@@ -1,0 +1,33 @@
+[submodule "python/yangshun/2048-python"]
+	path = python/yangshun/2048-python
+	url = https://github.com/yangshun/2048-python.git
+[submodule "python/bfontaine/term2048"]
+	path = python/bfontaine/term2048
+	url = https://github.com/bfontaine/term2048.git
+[submodule "python/kcwu/2048-python"]
+	path = python/kcwu/2048-python
+	url = https://github.com/kcwu/2048-python.git
+[submodule "python/guolz-ml/easy_2048-in-200-lines"]
+	path = python/guolz-ml/easy_2048-in-200-lines
+	url = https://github.com/guolz-ml/easy_2048-in-200-lines.git
+[submodule "python/abcfy2/python-2048"]
+	path = python/abcfy2/python-2048
+	url = https://github.com/abcfy2/python-2048.git
+[submodule "python/Kraks/2048.py"]
+	path = python/Kraks/2048.py
+	url = https://github.com/Kraks/2048.py.git
+[submodule "python/happyte/2048"]
+	path = python/happyte/2048
+	url = https://github.com/happyte/2048.git
+[submodule "python/summerliehu/python2048"]
+	path = python/summerliehu/python2048
+	url = https://github.com/summerliehu/python2048.git
+[submodule "python/tibrewalpratik17/2048_"]
+	path = python/tibrewalpratik17/2048_
+	url = https://github.com/tibrewalpratik17/2048_.git
+[submodule "python/davidsousarj/2048py"]
+	path = python/davidsousarj/2048py
+	url = https://github.com/davidsousarj/2048py.git
+[submodule "python/PacosLelouch/pygame2048"]
+	path = python/PacosLelouch/pygame2048
+	url = https://github.com/PacosLelouch/pygame2048.git

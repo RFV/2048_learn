@@ -4,10 +4,10 @@ import curses
 from random import randrange, choice  # generate and place new tile
 from collections import defaultdict
 
-keys = 'uneikm'
+keys = '˄˂˅˃re'
 actions = ['Up', 'Left', 'Down', 'Right', 'Restart', 'Exit']
-letter_codes = [ord(ch) for ch in keys + keys.upper()]
-actions_dict = dict(zip(letter_codes, actions * 2))
+letter_codes = [curses.KEY_UP, curses.KEY_LEFT, curses.KEY_DOWN, curses.KEY_RIGHT] + [ord(ch) for ch in keys[-2:]]
+actions_dict = dict(zip(letter_codes, actions))
 
 
 
